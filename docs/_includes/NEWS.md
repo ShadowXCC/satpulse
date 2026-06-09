@@ -41,6 +41,7 @@ _Not yet released_
 
 - `satpulsetool` has a new `pack` command, which reads a JSONL packet log and writes selected packets as a packet byte stream corresponding to the original packet contents. It can filter by packet `tag` and `msg`, and can preserve inter-packet timing for FIFO-based replay. (#247)
 - `satpulsetool` has a new `scan` command, which reads a raw GPS packet byte stream and writes a JSONL packet log that can be decoded with `satpulsetool annotate`. (#246)
+- `satpulsetool` has a new `satellites` command, which taps a proxy socket or TCP port exposed by `satpulsed` (or reads a JSONL packet log), decodes one navigation epoch, and reports satellite counts, DOP, and per-satellite CN0 as JSON or an aligned table. TDOP and GDOP require a binary-protocol tap selected with `--vendor`; an NMEA-only tap provides PDOP, HDOP, and VDOP.
 
 ### Miscellaneous
 
