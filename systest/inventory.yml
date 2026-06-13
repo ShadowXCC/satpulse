@@ -1,12 +1,12 @@
 all:
   vars:
-    ansible_user: jjc
+    ansible_user: shadowxcc
     ansible_python_interpreter: auto_silent
     virtual_host: false  # Set to true for virtual hosts (multiple instances on same machine)
     instance: ttyAMA0  # Instance for systemd service
     pin: 0             # PHC pin
     channel: 0         # PHC channel
-    speed: 9600        # Baud rate
+    speed: 115200        # Baud rate
     interface: eth0    # Network interface
     config: "true"     # Enable GPS configuration
     vendor: '"u-blox"' # GPS receiver vendor
@@ -17,137 +17,145 @@ all:
   children:
     testing:
       hosts:
-        abondance.lan:
-        abondance-ttyS0.lan:
-        brie.lan:
-        gubbeen.lan:
-        maasdam.lan:
-        morbier.lan:
-        pecorino.lan:
-        roquefort.lan:
-        serpa.lan:
-        taleggio.lan:
-        valencay.lan:
-        valtellina.lan:
-        wensleydale.lan:
-    virtual_hosts:
-      hosts:
-        abondance-ttyS0.lan:
+        192.168.1.196
+    #     abondance.lan:
+    #     abondance-ttyS0.lan:
+    #     brie.lan:
+    #     gubbeen.lan:
+    #     maasdam.lan:
+    #     morbier.lan:
+    #     pecorino.lan:
+    #     roquefort.lan:
+    #     serpa.lan:
+    #     taleggio.lan:
+    #     valencay.lan:
+    #     valtellina.lan:
+    #     wensleydale.lan:
+    # virtual_hosts:
+    #   hosts:
+    #     abondance-ttyS0.lan:
   
   hosts:
     # SinoGNSS K901 on USB
-    vacherin.lan:
+    192.168.1.241:
       speed: 115200
-      instance: ttyUSB0
+      instance: ttyAMA0
       config: "false"
       vendor: '"SinoGNSS"'
 
-    # ZED-X20P on USB
-    roquefort.lan:
-      speed: 38400
-      instance: ttyACM0
+    # # SinoGNSS K901 on USB
+    # vacherin.lan:
+    #   speed: 115200
+    #   instance: ttyUSB0
+    #   config: "false"
+    #   vendor: '"SinoGNSS"'
 
-    # LEA-6T
-    pecorino.lan:
-      interface: end0
-      instance: ttyAMA3
+    # # ZED-X20P on USB
+    # roquefort.lan:
+    #   speed: 38400
+    #   instance: ttyACM0
 
-    # ZED-F9T-20B in gnss.store dongle
-    maasdam.lan:
-      instance: ttyACM0
-      speed: 38400
-      interface: eth0
+    # # LEA-6T
+    # pecorino.lan:
+    #   interface: end0
+    #   instance: ttyAMA3
 
-    toma.lan:
-      instance: ttyACM0
-      speed: 38400
-      interface: enp1s0
+    # # ZED-F9T-20B in gnss.store dongle
+    # maasdam.lan:
+    #   instance: ttyACM0
+    #   speed: 38400
+    #   interface: eth0
 
-    # ZED-F9P in M.2 slot
-    abondance.lan:
-      instance: ttyACM0
-      interface: enp4s0
-      speed: 38400
-      pin: 1
+    # toma.lan:
+    #   instance: ttyACM0
+    #   speed: 38400
+    #   interface: enp1s0
 
-    # BG7TBL CM55 (second GPS on same machine as abondance.lan)
-    abondance-ttyS0.lan:
-      ansible_host: abondance.lan
-      instance: ttyS0
-      interface: enp5s0
-      speed: 38400
-      config_file: /etc/satpulse.d/ttyS0.toml
-      http_port: 2001
+    # # ZED-F9P in M.2 slot
+    # abondance.lan:
+    #   instance: ttyACM0
+    #   interface: enp4s0
+    #   speed: 38400
+    #   pin: 1
+
+    # # BG7TBL CM55 (second GPS on same machine as abondance.lan)
+    # abondance-ttyS0.lan:
+    #   ansible_host: abondance.lan
+    #   instance: ttyS0
+    #   interface: enp5s0
+    #   speed: 38400
+    #   config_file: /etc/satpulse.d/ttyS0.toml
+    #   http_port: 2001
   
-    ricotta.lan: # all default
+    # ricotta.lan: # all default
     
-    # TAU-1201
-    venaco.local:
-      speed: 115200
-      config: "false"
+    # # TAU-1201
+    # venaco.local:
+    #   speed: 115200
+    #   config: "false"
 
-    # LEA-M8T over RS232
-    caciocavallo.lan:
-      instance: ttyAMA3
+    # # LEA-M8T over RS232
+    # caciocavallo.lan:
+    #   instance: ttyAMA3
 
-    # LEA-M8F in Timebeat sandwich board
-    morbier.lan: # all default
+    # # LEA-M8F in Timebeat sandwich board
+    # morbier.lan: # all default
 
-    # MAX-F10S in Timebeat sandwich board
-    valdeon.lan: # all default
+    # # MAX-F10S in Timebeat sandwich board
+    # valdeon.lan: # all default
 
-    # NEO-F10N on a CM5
-    valtellina.lan:
-      speed: 38400
+    # # NEO-F10N on a CM5
+    # valtellina.lan:
+    #   speed: 38400
 
-    # LEA-F9T
-    mascarpone.lan:
-      speed: 115200
+    # # LEA-F9T
+    # mascarpone.lan:
+    #   speed: 115200
 
-    # UBX-G7020 in SR1723U7
-    chaource.lan: # all default
+    # # UBX-G7020 in SR1723U7
+    # chaource.lan: # all default
 
-    # UM960 on UART
-    wensleydale.lan:
-      speed: 115200
-      vendor: '"Unicore"'
+    # # UM960 on UART
+    # wensleydale.lan:
+    #   speed: 115200
+    #   vendor: '"Unicore"'
     
-    # TimeHAT on Pi 5 with M.2 NEO-M9N
-    taleggio.lan:
-      speed: 38400
-      interface: eth1
-      pin: 2
+    # # TimeHAT on Pi 5 with M.2 NEO-M9N
+    # taleggio.lan:
+    #   speed: 38400
+    #   interface: eth1
+    #   pin: 2
     
-    # UM980 on serial
-    serpa.lan:
-      speed: 115200
-      vendor: '"Unicore"'
+    # # UM980 on serial
+    # serpa.lan:
+    #   speed: 115200
+    #   vendor: '"Unicore"'
 
-    # NEO-F10T EVK attached to E810-XXVDA4T
-    brie.lan:
-      speed: 38400
-      instance: ttyUSB0
-      interface: enp1s0f0np0
-      pin: 1
-      channel: 1
+    # # NEO-F10T EVK attached to E810-XXVDA4T
+    # brie.lan:
+    #   speed: 38400
+    #   instance: ttyUSB0
+    #   interface: enp1s0f0np0
+    #   pin: 1
+    #   channel: 1
     
-    # LEA-M8T on UART
-    valencay.lan: # all default
+    # # LEA-M8T on UART
+    # valencay.lan: # all default
 
-    # M10050-KB on i210 on Raspberry Pi 5
-    gubbeen.lan:
-      interface: eth1
-      speed: 38400
+    # # M10050-KB on i210 on Raspberry Pi 5
+    # gubbeen.lan:
+    #   interface: eth1
+    #   speed: 38400
 
-    # mini PC (no PHC)
-    edam.lan:
-      interface: ""
-      instance: ttyACM1
-      speed: 115200
+    # # mini PC (no PHC)
+    # edam.lan:
+    #   interface: ""
+    #   instance: ttyACM1
+    #   speed: 115200
     
-    # Raspberry Pi 3
-    montasio.lan:
-      interface: ""
+    # # Raspberry Pi 3
+    # montasio.lan:
+    #   interface: ""
 
 
 
