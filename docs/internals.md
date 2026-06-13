@@ -236,6 +236,8 @@ These packages implement subcommands of satpulsetool. They are in the command-li
 
 `internal/replaycmd` implements `replay` subcommand of satpulsetool. It replays a JSONL packet log, generating JSONL events similar to an event log.
 
+`internal/satellitescmd` implements `satellites` subcommand of satpulsetool. It taps a packet stream (a proxy socket or TCP port) or reads a JSONL packet log, decodes one navigation epoch using the `gps/gpsreg` packet processors, and reports satellite counts, DOP, and per-satellite CN0 as JSON or an aligned table.
+
 `internal/sdpcmd` implements the `sdp` subcommand of satpulsetool. It provides interfaces to manage software-defined pins (SDPs) on PTP hardware clocks, including listing available interfaces and pins, capturing external timestamps, configuring periodic output, and disabling pins.
 
 ### web/

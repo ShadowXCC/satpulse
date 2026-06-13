@@ -103,6 +103,7 @@ var descriptions = []struct {
 	{"replay", "replay a JSONL packet log through the processing pipeline"},
 	{"ntrip", "Ntrip client"},
 	{"pmc", "send a PTP management message to ptp4l process"},
+	{"satellites", "show satellite info from a tap socket or packet log"},
 }
 
 func usage(progName string, flags *pflag.FlagSet) {
